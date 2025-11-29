@@ -1,40 +1,62 @@
-Lab 5 — Edge Detection and Segmentation
+# Lab 5 — Edge Detection and Segmentation
+**Course:** Mathematical Algorithms (DSP) — Image Processing  
+**Topic:** Edge detection, gradients, zero-crossings, Otsu thresholding, segmentation  
 
-Course: Mathematical Algorithms (DSP) — Image Processing
-Topic: Edge detection, gradients, zero-crossings, Otsu thresholding, segmentation
+This lab explores how edges correspond to high-frequency components in images and implements gradient-based, zero-crossing edge detection, and segmentation using Otsu’s method.
 
-Overview
+---
 
-This lab explores how edges correspond to high-frequency components in images. Gradient-based and zero-crossing operators are applied, and segmentation is performed using Otsu’s automatic thresholding.
+## 1. Edges and High-Frequency Components
+Edges correspond to **rapid intensity changes**, which are high-frequency components.  
+Derivative operators highlight these changes for easier edge detection.
 
-Edges and High-Frequency Components
+---
 
-Edges correspond to rapid intensity changes, which are high-frequency components, and derivative operators highlight these changes for edge detection.
+## 2. Gradient-Based Edge Detection
+**Sobel and Prewitt operators** approximate the gradient magnitude:
 
-Gradient-Based Edge Detection
+- Sobel: Adds smoothing, slightly cleaner edges.
+- Prewitt: Simpler, more sensitive to noise.
 
-The Sobel operator adds smoothing and produces cleaner edges, while the Prewitt operator is simpler and more sensitive to noise.
+---
 
-Canny Edge Detector
+## 3. Canny Edge Detector
+Multi-stage method:
 
-The Canny edge detector is a multi-stage method including Gaussian smoothing, gradient computation, non-maximum suppression, and hysteresis thresholding. It produces thin, continuous edges and effectively suppresses noise.
+1. Gaussian smoothing  
+2. Gradient magnitude and direction  
+3. Non-maximum suppression  
+4. Hysteresis thresholding  
 
-Laplacian of Gaussian (LoG)
+**Produces thin, continuous edges and suppresses noise effectively.**
 
-LoG detects edges as zero-crossings of the second derivative, capturing fine details but can be noise-sensitive.
+---
 
-Otsu’s Automatic Thresholding
+## 4. Laplacian of Gaussian (LoG) — Zero-Crossing
+Detects edges as zero-crossings of the second derivative.  
+Captures fine detail but can be noise-sensitive.
 
-Otsu’s method selects a threshold that maximizes the separation between background and foreground, useful for simple segmentation based on the image histogram.
+---
 
-Labeling and Visualization
+## 5. Otsu's Automatic Thresholding
+Automatically selects a global threshold to **maximize separation between background and foreground**.  
+Useful for simple segmentation based on intensity histograms.
 
-Connected regions in the binary mask are labeled and color-coded for visualization.
+---
 
-Reflections
+## 6. Labeling and Visualizing Segmented Regions
+Connected components in the binarized image are labeled and color-coded for visualization.
 
--Thinnest, cleanest edges: Canny
+---
 
--Why Canny outperforms gradient filters: smoothing, accurate gradient computation, non-maximum suppression, and edge linking
+## 7. Reflections
+- **Thinnest, cleanest edges:** Canny  
+- **Why Canny outperforms gradient filters:** Smoothing, accurate gradients, non-maximum suppression, edge linking  
+- **Otsu and histogram thresholding:** Chooses the threshold that maximizes between-class variance
 
--Otsu and histogram thresholding: threshold maximizes between-class variance
+---
+
+## Submission Instructions
+- Include **screenshots** and **short explanations** for each section.  
+- Push your work to **GitHub**.  
+- Submit **only the GitHub URL**.
