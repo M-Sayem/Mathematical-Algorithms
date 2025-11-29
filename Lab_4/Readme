@@ -1,93 +1,78 @@
-# Lab 4 — Noise and Filtering  
-**Course:** Mathematical Algorithms (DSP) — Image Processing  
-**Topic:** Noise modelling, MSE/SNR evaluation, linear & nonlinear filtering  
+Lab 4 — Noise and Filtering
 
-This lab investigates the effects of Gaussian and salt-and-pepper noise on an image, computes quality metrics, and compares filtering methods such as mean, Gaussian, and median filtering.
+Course: Mathematical Algorithms (DSP) — Image Processing
+Topic: Noise modelling, MSE/SNR evaluation, linear and nonlinear filtering
 
----
+This lab explores how Gaussian and salt-and-pepper noise affect an image, evaluates distortion using MSE and SNR, and compares three filtering methods: mean, Gaussian, and median filtering.
 
-## 1. Adding Noise (Gaussian and Salt-and-Pepper)
+1. Adding Noise (Gaussian and Salt-and-Pepper)
 
-Two types of noise were added to the grayscale *peppers* image:
+Two common noise models were added to the grayscale peppers image:
 
-- **Gaussian noise** (mean = 0, variance = 0.01)  
-- **Salt-and-pepper (S&P) noise** with density 0.05  
+Gaussian noise (mean = 0, variance = 0.01)
 
-**Observation:**  
-Gaussian noise produces fine grain across the image, while S&P noise creates strong black and white impulse spikes.
+Salt-and-pepper noise with a density of 0.05
 
+Observation:
+Gaussian noise appears as fine, grain-like variations, while salt-and-pepper noise produces strong black and white impulse spikes.
 
+2. Quality Metrics (MSE and SNR)
 
----
+The distortion introduced by each noise type was quantified using Mean Square Error (MSE) and Signal-to-Noise Ratio (SNR).
 
-## 2. Quality Metrics (MSE and SNR)
+Measured Results
+Noise Type	MSE	SNR (dB)
+Gaussian	0.0096	11.5114 dB
+Salt & Pepper	0.0158	9.3372 dB
 
-The following values were computed using MATLAB:
+Interpretation:
 
-### **Measured Results**
-| Noise Type | MSE | SNR (dB) |
-|------------|-------------|-----------|
-| Gaussian | **0.0096** | **11.5114 dB** |
-| Salt & Pepper | **0.0158** | **9.3372 dB** |
+Salt-and-pepper noise has a higher MSE, meaning it introduces stronger pixel-level distortion.
 
-**Interpretation:**
-- S&P noise has **higher MSE** → it distorts pixel values more heavily.
-- Gaussian noise has **higher SNR** → it is less visually disruptive.
+Gaussian noise has a higher SNR, indicating it is less visually disruptive overall.
 
-
----
-
-## 3. Linear Filtering (Mean & Gaussian Filters)
+3. Linear Filtering (Mean & Gaussian Filters)
 
 Two linear smoothing filters were applied:
 
-### **Mean Filter (3×3 average)**
-- Reduces Gaussian noise modestly  
-- Performs poorly on removing impulse noise  
-- Produces noticeable blurring
+Mean Filter (3×3)
 
-### **Gaussian Filter (σ = 0.7)**
-- Best suited to Gaussian noise  
-- Smoother and less harsh than the mean filter  
-- Still ineffective for salt-and-pepper impulse pixels  
+Slightly reduces Gaussian noise
 
+Performs poorly for impulse noise
 
+Causes noticeable blurring of edges and details
 
----
+Gaussian Filter (σ = 0.7)
 
-## 4. Nonlinear Filtering (Median Filter)
+Better suited for Gaussian noise due to its statistical match
 
-The median filter was applied using a 3×3 window.
+Produces smoother and more natural results than the mean filter
 
-**Why median?**  
-It removes isolated spikes (S&P noise) while preserving edges, unlike linear filters which blur boundaries.
+Still ineffective for removing salt-and-pepper noise
 
+4. Nonlinear Filtering (Median Filter)
 
+The median filter (3×3) was applied to both noise types.
 
----
+Why the median filter?
+It effectively removes isolated outlier pixels (salt-and-pepper noise) while preserving edges, unlike linear filters which blur intensity transitions.
 
-## 5. Filter Performance — MSE After Filtering
+5. Filter Performance — MSE After Filtering
+Salt-and-Pepper Noise
+Filter	MSE
+Average Filter	0.0021
+Median Filter	0.0001
 
-### **Salt-and-Pepper Noise**
-| Filter | MSE |
-|--------|--------|
-| Average Filter | **0.0021** |
-| Median Filter | **0.0001** |
+Conclusion:
+The median filter is far more effective for salt-and-pepper noise.
+The average filter reduces noise slightly but leaves many impulse pixels and introduces blur.
 
-**Conclusion:**  
-Median filtering is **vastly better** for impulse noise.  
-Average filtering reduces some noise but leaves many impulse pixels and blurs edges.
+Gaussian Noise
+Filter	MSE
+Average Filter	0.0013
+Median Filter	0.0019
 
----
-
-### **Gaussian Noise**
-| Filter | MSE |
-|--------|--------|
-| Average Filter | **0.0013** |
-| Median Filter | **0.0019** |
-
-**Conclusion:**  
-The **average filter performs better** than the median filter for Gaussian noise.  
-Median filtering is not designed for Gaussian statistics, so it performs slightly worse.
-
----
+Conclusion:
+For Gaussian noise, the average filter performs better than the median filter.
+Median filtering is not designed for Gaussian-distributed noise, which explains its slightly worse performance.
