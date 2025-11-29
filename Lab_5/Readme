@@ -1,4 +1,5 @@
 # Lab 5 — Edge Detection and Segmentation
+
 **Course:** Mathematical Algorithms (DSP) — Image Processing  
 **Topic:** Edge detection, gradients, zero-crossings, Otsu thresholding, segmentation  
 
@@ -15,8 +16,8 @@ Derivative operators highlight these changes for easier edge detection.
 ## 2. Gradient-Based Edge Detection
 **Sobel and Prewitt operators** approximate the gradient magnitude:
 
-- Sobel: Adds smoothing, slightly cleaner edges.
-- Prewitt: Simpler, more sensitive to noise.
+- **Sobel:** Adds smoothing, slightly cleaner edges.
+- **Prewitt:** Simpler, more sensitive to noise.
 
 ---
 
@@ -53,10 +54,3 @@ Connected components in the binarized image are labeled and color-coded for visu
 - **Thinnest, cleanest edges:** Canny  
 - **Why Canny outperforms gradient filters:** Smoothing, accurate gradients, non-maximum suppression, edge linking  
 - **Otsu and histogram thresholding:** Chooses the threshold that maximizes between-class variance
-
----
-
-## Submission Instructions
-- Include **screenshots** and **short explanations** for each section.  
-- Push your work to **GitHub**.  
-- Submit **only the GitHub URL**.
