@@ -1,0 +1,8 @@
+1) Why does ideal LP cause ringing (Gibbs phenomenon)?
+   -A sharp cutoff in frequency creates a sinc in space → oscillations near edges.
+
+2) What does fftshift do visually?
+  -Moves the DC component to the center so high frequencies appear symmetrically.
+
+3) When is frequency-domain filtering preferable?
+  -When the kernel (PSF) is large—FFT-based convolution is far faster.
