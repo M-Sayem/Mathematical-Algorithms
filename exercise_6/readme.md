@@ -9,35 +9,38 @@ $$
 using MATLAB.  
 
 ## Features
-- Time-domain signal generation for `x(t)`  
-- Fast Fourier Transform (FFT) for frequency-domain analysis  
-- Visualization with `subplot`:
-  - **Top plot:** Time-domain signal (zoomed section)  
-  - **Bottom plot:** Frequency-domain representation using `fft` and `fftshift`  
+- Generate a sinusoidal signal in the time domain.  
+- Compute its frequency-domain representation using Fast Fourier Transform (FFT).  
+- Visualize both time-domain and frequency-domain plots in one figure using `subplot`.  
+- Zoom in on a portion of the time-domain signal for better clarity.  
 
-## MATLAB Code Example
+## MATLAB Code
 ```matlab
-% Define time vector
-fs = 1000;               % Sampling frequency
-t = 0:1/fs:0.1;          % Time vector
+%% Signal in Time and Frequency Domain
+clc;
+clear all;
+close all;
 
-% Generate sinusoidal signal
+% Time domain signal
+t = -1:0.001:1;
 x = sin(2*pi*50*t);
 
-% Compute FFT
-X = fft(x);
-f = (-length(X)/2:length(X)/2-1)*(fs/length(X));
-
-% Plot time-domain and frequency-domain signals
-figure;
+% Time plot (zoomed section)
 subplot(2,1,1);
-plot(t, x, 'LineWidth', 1.5);
-xlabel('Time (s)'); ylabel('Amplitude');
-title('Time-domain Signal');
+plot(t(1001:1200), x(1001:1200));
 grid on;
+title('Sin(2\pi50t)');
+xlabel('Time (s)');
+ylabel('Amplitude');
+
+% Frequency domain
+X = abs(fft(x));
+X2 = fftshift(X);
+f = -499.9 : 1000/2001 : 500;
 
 subplot(2,1,2);
-plot(f, fftshift(abs(X)), 'LineWidth', 1.5);
-xlabel('Frequency (Hz)'); ylabel('Magnitude');
-title('Frequency-domain Signal');
+plot(f, X2);
 grid on;
+title('Frequency domain representation of Sin(2\pi50t)');
+xlabel('Frequency (Hz)');
+ylabel('|X(f)|');
